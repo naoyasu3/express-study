@@ -1,69 +1,27 @@
-    body {
-      padding: 0;
-      margin: 0;
-      font-family: sans-serif;
-    }
-    main {
-      padding: 1rem;
-    }
-    .main-header {
-      width: 100%;
-      height: 56px;
-      background-color: rgb(6, 175, 175);
-      padding: 0 1.5rem;
-    }
-    .main-header_nav {
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-    .main-header-item_list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-    .main-header_item {
-      margin: 0 1rem;
-      padding: 0;
-    }
-    .main-header_item a {
-      text-decoration: none;
-      color: white;
-    }
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
 
-    .main-header_item a:hover,
-    .main-header_item a:active,
-    .main-header_item a.active{
-      color: black;
-    }
-    .product-form {
-      width: 30rem;
-      max-width: 90%;
-      margin: auto;
-    }
-    .form-control {
-      margin: 1rem 0;
-    }
-    .form-control label,
-    .form-control input {
-      display: block;
-      width: 100%;
-    }
-    .form-control input {
-      border: 1px solid rgb(63, 63, 63);
-      font: inherit;
-      border-radius: 2px;
-    }
-    button {
-      font: inherit;
-      border: 1px solid rgb(37, 37, 37);
-      color: rgb(33, 33, 34);
-      background: white;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    button:hover,
-    button:active {
-      background-color: rgba(56, 55, 55, 0.788);
-    }
+.product-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.product__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.product__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.product__description {
+    text-align: center;
+}
