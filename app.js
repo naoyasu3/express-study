@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
@@ -18,6 +19,10 @@ const authRoutes = require('./routes//auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+//resave 変更が会った時のみ保存する、 saveUninitialized: 何も保存する必要がないリクエストに対して、セッションが保存されないようにする
+app.use(
+  session({ secret: 'my secret', reasve: false, saveUninitialized: false })
+);
 
 app.use((req, res, next) => {
   User.findById('5e9d69326410af8bd603d56c')
