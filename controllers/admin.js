@@ -64,7 +64,7 @@ exports.postEditProduct = (req, res, next) => {
       product.title = updateTitle;
       product.price = updatePrice;
       product.imageUrl = updateImageUrl;
-      product.updateDesc = updateDesc;
+      product.description = updateDesc;
       return product.save();
     })
     .then((result) => {
