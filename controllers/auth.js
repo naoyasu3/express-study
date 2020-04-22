@@ -1,4 +1,4 @@
-const crypo = require('crypto');
+const crypto = require('crypto');
 
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
@@ -9,7 +9,7 @@ const User = require('../models/user');
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
-      api_key: 'dammmmmmmmy',
+      api_key: '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',
     },
   })
 );
@@ -45,7 +45,9 @@ exports.getSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  User.findOne({ email: email })
+  User.findOne({
+      email: email
+    })
     .then((user) => {
       if (!user) {
         req.flash('error', 'Invalid email or password.');
@@ -78,7 +80,9 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
-  User.findOne({ email: email })
+  User.findOne({
+      email: email
+    })
     .then((userDoc) => {
       if (password !== confirmPassword) {
         req.flash(
@@ -98,7 +102,9 @@ exports.postSignup = (req, res, next) => {
         const user = new User({
           email: email,
           password: hashedPassword,
-          cart: { items: [] },
+          cart: {
+            items: []
+          },
         });
         return user.save();
       });
@@ -148,7 +154,9 @@ exports.postRest = (req, res, next) => {
       return res.redirect('/reset');
     }
     const token = buffer.toString('hex');
-    User.findOne({ email: req.body.email })
+    User.findOne({
+        email: req.body.email
+      })
       .then((user) => {
         if (!user) {
           req.flash('error', 'No account with that email found.');
@@ -166,7 +174,7 @@ exports.postRest = (req, res, next) => {
           subject: 'Password Reset',
           html: `
             <p>You requested a password reset</p>
-            <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+            <p>Click this <a href="http://localhost:3000/new-password/${token}">link</a> to set a new password.</p>
           `,
         });
       })
@@ -179,9 +187,11 @@ exports.postRest = (req, res, next) => {
 exports.getNewPassword = (req, res, next) => {
   const token = req.params.token;
   User.findOne({
-    resetToken: token,
-    resetTokenExpiration: { $gt: Date.now() },
-  })
+      resetToken: token,
+      resetTokenExpiration: {
+        $gt: Date.now()
+      },
+    })
     .then((user) => {
       let message = req.flash('error');
       if (message.length > 0) {
@@ -209,10 +219,12 @@ exports.postNewPassword = (req, res, next) => {
   let resetUser;
 
   User.findOne({
-    resetToken: passwordToken,
-    resetTokenExpiration: { $gt: Date.now() },
-    _id: userId,
-  })
+      resetToken: passwordToken,
+      resetTokenExpiration: {
+        $gt: Date.now()
+      },
+      _id: userId,
+    })
     .then((user) => {
       resetUser = user;
       return bcrypt.hash(newPassword, 12);
